@@ -7,6 +7,8 @@ const imageminMozjpeg = require('imagemin-mozjpeg')
 const imageminSvgo = require('imagemin-svgo')
 const optimizedPath = join(__dirname, '../public', 'images')
 
+// @TODO!!!!
+
 export const resize = (inputBuffer, width, heigth, out, done) => {
   sharp(inputBuffer)
     .resize(width, heigth)

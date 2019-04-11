@@ -10,6 +10,8 @@ const accceptedTypes = ['image/png', 'image/jpeg', 'image/webp']
 const filePath = process.env.NODE_ENV === 'production' ? '../.env' : '../.env.development'
 require('dotenv').config({ path: filePath })
 
+// @ODO
+
 app.use(fileUpload({
   useTempFiles: true,
   tempFileDir: '/tmp/'

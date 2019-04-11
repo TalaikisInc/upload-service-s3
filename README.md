@@ -6,6 +6,8 @@ Work in progress.
 
 ```bash
 npm i
+amplify init
+amplify add storage
 ```
 
 ## Start
