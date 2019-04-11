@@ -1,5 +1,7 @@
 # Upload Service S3
 
+A Dockerized API for images upload to S3.
+
 Work in progress.
 
 ## Install
