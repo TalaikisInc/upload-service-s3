@@ -4,6 +4,16 @@ A Dockerized API for images upload to S3.
 
 Work in progress.
 
+## Features
+
+* Upload images to S3
+* Internationalized responses
+
+TODO:
+
+* optimize before uploading
+* detect adult images before uplaoding (or via frontend part)
+
 ## Install
 
 ```bash
@@ -30,10 +40,6 @@ npm run start
 ```bash
 npm run test
 ```
-
-## TODO
-
-* Internationalization
 
 ## Licence
 
