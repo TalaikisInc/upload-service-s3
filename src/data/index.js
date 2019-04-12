@@ -3,8 +3,12 @@ import { getData, save, remove, list } from '../s3'
 const dataLib = {}
 
 dataLib.create = (dir, file, data, done) => {
+  console.log('creating')
+  console.log(`${dir}/${file}`)
   save(`${dir}/${file}`, data, (err, res) => {
     if (!err && res) {
+      console.log('res')
+      console.log(res)
       done(false, res)
     } else {
       done('Cannot create new file.')

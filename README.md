@@ -1,8 +1,6 @@
 # Upload Service S3
 
-A Dockerized API for images upload to S3.
-
-Work in progress.
+A Dockerized Node.js API for images upload to S3.
 
 ## Features
 
@@ -20,6 +18,7 @@ TODO:
 npm i
 amplify init
 amplify add storage
+amplify push
 ```
 
 ## Start

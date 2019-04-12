@@ -1,17 +1,18 @@
-import { join } from 'path'
+import { resolve } from 'path'
 
 import express from 'express'
 import fileUpload from 'express-fileupload'
 
 import { t, setLocale } from './translations'
-import rnd from './rnd'
+import rnd from './utils/rnd'
+import datLlib from './data'
+import dataLib from './data';
 const port = 3000
 const app = express()
 const accceptedTypes = ['image/png', 'image/jpeg', 'image/webp']
-const filePath = process.env.NODE_ENV === 'production' ? '../.env' : '../.env.development'
+const filePath = process.env.NODE_ENV === 'production' ? resolve(__dirname, '../.env') : resolve(__dirname, '../.env.development')
 require('dotenv').config({ path: filePath })
 
-// @ODO
 
 app.use(fileUpload({
   useTempFiles: true,
@@ -19,7 +20,7 @@ app.use(fileUpload({
 }))
 
 app.post('/', (req, res) => {
-  const key = req.body && req.body.apiKey ? req.body.apiKey : false
+  const key = req.body && req.body.apiKey.length === 13 ? req.body.apiKey : false
   const locale = req.body && req.body.locale ? req.body.locale : false
   if (locale) {
     setLocale(locale)
@@ -33,14 +34,14 @@ app.post('/', (req, res) => {
       const file = req.files.file
       const ext = file.name.split('.')[1]
       if (accceptedTypes.includes(file.mimetype)) {
-        rnd(8, (id) => {
+        rnd(16, (id) => {
           if (id) {
             const fileName = `${id}.${ext}`
-            file.mv(join(__dirname, '../public', fileName), (err) => {
-              if (err) {
-                res.status(500).json({ err })
+            dataLib.create('images', fileName, file.data, (err, aws) => {
+              if (!err && aws) {
+                res.status(200).json({ id: fileName, status: t('uploaded'), res: aws })
               } else {
-                res.status(200).json({ id: fileName, status: t('uploaded') })
+                res.status(500).json({ err })
               }
             })
           } else {

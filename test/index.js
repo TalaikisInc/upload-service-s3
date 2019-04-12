@@ -11,7 +11,7 @@ describe('api', () => {
   describe('upload', () => {
     it('upload should work', (done) => {
       request(server).post('/')
-        .field('extra_info', '{"apiKey":"test"}')
+        .field('apiKey', 'OBnqY6cjxJvVD')
         .attach('file', join(__dirname, 'mocks', 'image.jpg'))
         .type('form')
         .expect(200)
