@@ -11,5 +11,6 @@ ENV NODE_ENV production
 ENV PORT 3000
 
 EXPOSE 3000
+USER node
 
 CMD ["pm2-runtime", "src/index.js", "i", "2"]
